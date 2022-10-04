@@ -15,10 +15,10 @@ module.exports = {
         type: Sequelize.STRING(2000)
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2000)
       },
       itemSummary: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(2000)
       },
       startingBid: {
         type: Sequelize.INTEGER
