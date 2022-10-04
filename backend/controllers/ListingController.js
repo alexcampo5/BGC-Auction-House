@@ -1,8 +1,12 @@
 const { User, Bid, Listing } = require('../models')
 
-const getAlllistings = async (req, res) => {
+const getAllListings = async (req, res) => {
   try {
-    let listings = await Listing.findAll()
+    let listings = await Listing.findAll({
+      include: {
+        model: Bid
+      }
+    })
     res.send(listings)
   } catch (error) {
     throw error
@@ -11,7 +15,11 @@ const getAlllistings = async (req, res) => {
 
 const getListingById = async (req, res) => {
   try {
-    let listing = await Listing.findByPk(req.params.listing_id)
+    let listing = await Listing.findByPk(req.params.listing_id, {
+      include: {
+        model: Bid
+      }
+    })
     res.send(listing)
   } catch (error) {
     throw error
@@ -50,7 +58,7 @@ const deleteListing = async (req, res) => {
 }
 
 module.exports = {
-  getAlllistings,
+  getAllListings,
   createListing,
   updateListing,
   deleteListing,
