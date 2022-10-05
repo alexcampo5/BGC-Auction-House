@@ -1,6 +1,6 @@
 type LoginProps = {}
 
-const LoginCard = () => {
+const Login = () => {
   return (
   <div>
     <h1> I am the login page </h1>
@@ -8,4 +8,4 @@ const LoginCard = () => {
 )
 }
 
-export default LoginCard
+export default Login
