@@ -1,10 +1,38 @@
+import {useState, useEffect} from 'react'
+import axios from 'axios'
+import ListingCard from '../components/ListingCard'
 
 type ListingProps = {}
+type Listing = {
+  title: string,
+  imageUrl: string,
+  description: string,
+  itemSummary: string,
+  startingBid: number,
+  bidIncrement: number,
+  approximateValue: number
+}
 
 const Listings = () => {
+  const [listings, setListings] = useState<Listing[]>([])
+
+  const getAllListings = async () => {
+    let listings = await axios.get('http://localhost:3001/listings')
+    console.log(listings.data)
+    setListings(listings.data)
+  }
+
+  useEffect(() => {
+    getAllListings()
+  }, [])
+
+
   return (
   <div>
-    <h1> I am the listings </h1>
+    <h1> Listings </h1>
+    {listings.map((listing) => (
+      <ListingCard {...listing}/>
+    ))}
   </div>
 )
 }

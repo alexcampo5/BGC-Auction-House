@@ -1,7 +1,12 @@
+import { Link } from "react-router-dom"
+
 const NavBar = () => {
   return (
-  <div>
-    <h1> I am the Nav Bar </h1>
+  <div className="navBar">
+    <Link to='/'>Home</Link>
+    <Link to='/items'>Auction Items</Link>
+    <Link to='/profile'>Profile</Link>
+    <button>Log Out</button>
   </div>
 )
 }

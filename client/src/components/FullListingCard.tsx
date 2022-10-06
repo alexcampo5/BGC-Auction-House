@@ -8,7 +8,7 @@ type ListingCardProps = {
   approximateValue: number
 }
 
-const ListingCard = (props: ListingCardProps) => {
+const FullListingCard = (props: ListingCardProps) => {
   return (
   <div>
     <img src={props.imageUrl} alt='item' />
@@ -17,4 +17,4 @@ const ListingCard = (props: ListingCardProps) => {
 )
 }
 
-export default ListingCard
+export default FullListingCard

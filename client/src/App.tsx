@@ -8,9 +8,30 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Listings from './pages/Listings';
 import Profile from './pages/Profile';
+import axios from 'axios';
 
+type User = {
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
+}
 
 function App() {
+  const [user, setUser] = useState<User>()
+
+  const getUserData = async () => {
+    let users = await axios.get('http://localhost:3001/users')
+    console.log(users.data)
+    setUser(users.data)
+  }
+
+  useEffect(() => {
+    getUserData()
+  }, [])
+
   return (
     <div className="App">
       <NavBar />
