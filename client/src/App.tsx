@@ -44,11 +44,12 @@ function App() {
 
   useEffect(() => {
     getUserData()
-  }, [])
+    console.log(currentUser)
+  }, [currentUser])
 
   return (
     <div className="App">
-      <NavBar />
+      <NavBar currentUser={currentUser} initialUserValues={initialUserValues} setCurrentUser={setCurrentUser}/>
       <Routes>
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login allUsers={allUsers} currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />

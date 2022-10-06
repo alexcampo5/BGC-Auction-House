@@ -40,22 +40,27 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
     username: '',
     password: ''
   }
-
   const navigate = useNavigate()
+
   const [formValues, setFormValues] = useState(initialFormValues)
 
   console.log(allUsers)
 
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    let newUser = await axios.get(`${BASE_URL}/users`)
+    let correctUser: AllUsers = allUsers.find((user) => {
+      return (user.username == formValues.username)
+    })! //this is a not null operator
+    let user = await axios.get(`${BASE_URL}/users/${correctUser.id}`)
+    console.log(user)
+    setCurrentUser(user.data)
     setFormValues(initialFormValues)
-    console.log(newUser)
-    navigate('/login')
+    // navigate('/listings')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    console.log(formValues)
   }
   return (
   <div>
