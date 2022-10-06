@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
 import ListingCard from '../components/ListingCard'
+import BASE_URL from '../services/api'
 
 type ListingProps = {}
 
@@ -19,7 +20,7 @@ const Listings = () => {
   const [listings, setListings] = useState<Listing[]>([])
 
   const getAllListings = async () => {
-    let listings = await axios.get('http://localhost:3001/listings')
+    let listings = await axios.get(`${BASE_URL}/listings`)
     console.log(listings.data)
     setListings(listings.data)
   }

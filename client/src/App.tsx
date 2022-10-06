@@ -9,6 +9,8 @@ import SignUp from './components/SignUp';
 import Listings from './pages/Listings';
 import Profile from './pages/Profile';
 import axios from 'axios';
+import FullListingCard from './components/FullListingCard';
+import BASE_URL from './services/api'
 
 type User = {
   firstName: string,
@@ -23,7 +25,7 @@ function App() {
   const [user, setUser] = useState<User>()
 
   const getUserData = async () => {
-    let users = await axios.get('http://localhost:3001/users')
+    let users = await axios.get(`${BASE_URL}/users`)
     console.log(users.data)
     setUser(users.data)
   }
@@ -41,6 +43,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/items" element= {<Listings />} />
         <Route path="/profile/:profile_id" element={<Profile />} />
+        <Route path="/items/:item_id" element={<FullListingCard />} />
       </Routes>
     </div>
   );

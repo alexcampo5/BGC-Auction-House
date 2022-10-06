@@ -1,5 +1,7 @@
+import axios from 'axios'
 import {useState, useEffect} from 'react'
 import {useNavigate} from 'react-router-dom'
+import BASE_URL from '../services/api'
 
 type SignUpProps = {}
 type FormValues = {
@@ -26,6 +28,11 @@ const SignUp = () => {
 
   let navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
+
+  const handleSignUpSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault()
+    await axios.post(`${BASE_URL}/users`)
+  }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
