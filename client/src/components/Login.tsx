@@ -3,16 +3,18 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import BASE_URL from '../services/api' 
 
+interface AllUsers {
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
+}
+
 interface LoginProps {
-    allUsers: {
-      id: number,
-      firstName: string,
-      lastName: string,
-      username: string,
-      email: string,
-      password: string,
-      phoneNumber: string,
-    };
+    allUsers: AllUsers[];
     currentUser: {
       id: number,
       firstName: string,
@@ -22,7 +24,7 @@ interface LoginProps {
       password: string,
       phoneNumber: string,
     };
-    setCurrentUser: void
+    setCurrentUser: React.Dispatch<React.SetStateAction<LoginProps>>
   }
 
 type LoginValues = {
