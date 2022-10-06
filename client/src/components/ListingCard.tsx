@@ -12,8 +12,8 @@ type ListingCardProps = {
 const ListingCard = (props: ListingCardProps) => {
 
   return (
-  <div>
-    <img src={props.imageUrl} alt='item' />
+  <div className='all-listings-card'>
+    <img src={props.imageUrl} alt='item' className="all-listings-photo"/>
     <h1>{props.title}</h1>
   </div>
 )

@@ -43,10 +43,6 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
   const navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const checkPasswords = (username: string, password: string) => {
-
-  }
-
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     let correctUser: AllUsers = allUsers.find((user) => {

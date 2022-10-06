@@ -39,7 +39,7 @@ const Listings = () => {
   <div>
     <h1> Listings </h1>
     {listings.map((listing) => (
-      <div key={listing.title} className='all-listings-card' onClick={() => navigateListingDetails(listing.id)}>
+      <div key={listing.title} className='all-listings-container' onClick={() => navigateListingDetails(listing.id)}>
         <ListingCard {...listing}/>
       </div>
     ))}
