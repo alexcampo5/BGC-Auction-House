@@ -5,6 +5,7 @@ import ListingCard from '../components/ListingCard'
 type ListingProps = {}
 
 type Listing = {
+  id: number,
   title: string,
   imageUrl: string,
   description: string,

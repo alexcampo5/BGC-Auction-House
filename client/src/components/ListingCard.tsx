@@ -1,3 +1,5 @@
+import belfair from '../assets/Belfair.jpeg'
+
 type ListingCardProps = {
   title: string,
   imageUrl: string,
@@ -9,6 +11,7 @@ type ListingCardProps = {
 }
 
 const ListingCard = (props: ListingCardProps) => {
+
   return (
   <div>
     <img src={props.imageUrl} alt='item' />
