@@ -41,10 +41,7 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
     password: ''
   }
   const navigate = useNavigate()
-
   const [formValues, setFormValues] = useState(initialFormValues)
-
-  console.log(allUsers)
 
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -55,12 +52,11 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
     console.log(user)
     setCurrentUser(user.data)
     setFormValues(initialFormValues)
-    // navigate('/listings')
+    navigate('/items')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
-    console.log(formValues)
   }
   return (
   <div>
