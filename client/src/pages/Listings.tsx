@@ -2,6 +2,7 @@ import {useState, useEffect} from 'react'
 import axios from 'axios'
 import ListingCard from '../components/ListingCard'
 import BASE_URL from '../services/api'
+import {useNavigate} from 'react-router-dom'
 
 type ListingProps = {}
 
@@ -17,12 +18,16 @@ type Listing = {
 }
 
 const Listings = () => {
+  const navigate = useNavigate()
   const [listings, setListings] = useState<Listing[]>([])
 
   const getAllListings = async () => {
     let listings = await axios.get(`${BASE_URL}/listings`)
-    console.log(listings.data)
     setListings(listings.data)
+  }
+
+  const navigateListingDetails = (listingId: number) => {
+    navigate(`/items/${listingId}`)
   }
 
   useEffect(() => {
@@ -34,7 +39,7 @@ const Listings = () => {
   <div>
     <h1> Listings </h1>
     {listings.map((listing) => (
-      <div key={listing.title} className='all-listings-card'>
+      <div key={listing.title} className='all-listings-card' onClick={() => navigateListingDetails(listing.id)}>
         <ListingCard {...listing}/>
       </div>
     ))}

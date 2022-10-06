@@ -56,7 +56,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/items" element= {<Listings />} />
         <Route path="/profile/:profile_id" element={<Profile />} />
-        <Route path="/items/:item_id" element={<FullListingCard />} />
+        <Route path="/items/:itemId" element={<FullListingCard />} />
       </Routes>
     </div>
   );
