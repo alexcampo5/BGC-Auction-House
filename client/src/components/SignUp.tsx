@@ -29,19 +29,22 @@ const SignUp = () => {
   let navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const handleSignUpSubmit = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignUpSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    await axios.post(`${BASE_URL}/users`)
+    let newUser = await axios.post(`${BASE_URL}/users`, formValues)
+    setFormValues(initialFormValues)
+    console.log(newUser)
+    navigate('/login')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
-    console.log(formValues)
+    // console.log(formValues)
   }
   return (
   <div>
     <h1>Sign Up</h1>
-    <form>
+    <form onSubmit={handleSignUpSubmit}>
       <div>
         <input type='text' onChange={handleChange} name='firstName' placeholder='First Name' value={formValues.firstName} required/>
       </div>
@@ -49,10 +52,10 @@ const SignUp = () => {
         <input type='text' onChange={handleChange} name='lastName' placeholder='Last Name' value={formValues.lastName} required/>
       </div>
       <div>
-        <input type='text' onChange={handleChange} name='username' placeholder='username' value={formValues.username} required/>
+        <input type='text' onChange={handleChange} name='username' placeholder='Username' value={formValues.username} required/>
       </div>
       <div>
-        <input type='email' onChange={handleChange} name='email' placeholder='email' value={formValues.email} required/>
+        <input type='email' onChange={handleChange} name='email' placeholder='Email' value={formValues.email} required/>
       </div>
       <div>
         <input type='text' onChange={handleChange} name='phoneNumber' placeholder='Phone Number' value={formValues.phoneNumber} required/>
@@ -63,6 +66,7 @@ const SignUp = () => {
       <div>
         <input type='password' onChange={handleChange} name='confirmPassword' placeholder='Confirm Password' value={formValues.confirmPassword} required/>
       </div>
+      <button>Submit</button>
     </form>
   </div>
 )

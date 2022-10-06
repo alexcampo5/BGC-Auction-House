@@ -1,6 +1,5 @@
-import belfair from '../assets/Belfair.jpeg'
-
 type ListingCardProps = {
+  id: number,
   title: string,
   imageUrl: string,
   description: string,
