@@ -3,7 +3,7 @@ import {useNavigate} from 'react-router-dom'
 import axios from 'axios'
 import BASE_URL from '../services/api' 
 
-type LoginProps = {
+interface LoginProps {
     allUsers: {
       id: number,
       firstName: string,
@@ -12,7 +12,7 @@ type LoginProps = {
       email: string,
       password: string,
       phoneNumber: string,
-    },
+    };
     currentUser: {
       id: number,
       firstName: string,
@@ -21,7 +21,8 @@ type LoginProps = {
       email: string,
       password: string,
       phoneNumber: string,
-    }
+    };
+    setCurrentUser: void
   }
 
 type LoginValues = {
@@ -29,7 +30,7 @@ type LoginValues = {
   password: string
 }
 
-const Login = (props: LoginProps) => {
+const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
 
   const initialFormValues: LoginValues = {
     username: '',
@@ -38,9 +39,8 @@ const Login = (props: LoginProps) => {
 
   const navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
-  const [allUsers, setAllUsers] = useState()
 
-  console.log(props.allUsers)
+  console.log(allUsers)
 
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
@@ -52,7 +52,6 @@ const Login = (props: LoginProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
-    // console.log(formValues)
   }
   return (
   <div>
