@@ -9,7 +9,7 @@ interface AllUsers {
   lastName: string,
   username: string,
   email: string,
-  password: string,
+  passwordDigest: string,
   phoneNumber: string,
 }
 
@@ -19,7 +19,7 @@ interface CurrentUser {
   lastName: string,
   username: string,
   email: string,
-  password: string,
+  passwordDigest: string,
   phoneNumber: string,
 }
 
@@ -43,16 +43,24 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
   const navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
 
+  const checkPasswords = (username: string, password: string) => {
+
+  }
+
   const handleLoginSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
     let correctUser: AllUsers = allUsers.find((user) => {
       return (user.username == formValues.username)
     })! //this is a not null operator
-    let user = await axios.get(`${BASE_URL}/users/${correctUser.id}`)
-    console.log(user)
-    setCurrentUser(user.data)
-    setFormValues(initialFormValues)
-    navigate('/items')
+    if (formValues.password == correctUser.passwordDigest) {
+      let user = await axios.get(`${BASE_URL}/users/${correctUser.id}`)
+      console.log(user)
+      setCurrentUser(user.data)
+      setFormValues(initialFormValues)
+      navigate('/items')
+    } else{
+      alert('Wrong password. Please try again.')
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

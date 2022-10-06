@@ -7,7 +7,7 @@ interface CurrentUser {
   lastName: string,
   username: string,
   email: string,
-  password: string,
+  passwordDigest: string,
   phoneNumber: string,
 }
 

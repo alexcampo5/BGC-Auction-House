@@ -18,7 +18,7 @@ interface User {
   lastName: string,
   username: string,
   email: string,
-  password: string,
+  passwordDigest: string,
   phoneNumber: string,
 }
 
@@ -29,7 +29,7 @@ function App() {
     lastName: '',
     username: '',
     email: '',
-    password: '',
+    passwordDigest: '',
     phoneNumber: '',
   }
 
