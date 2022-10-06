@@ -3,6 +3,7 @@ import axios from 'axios'
 import ListingCard from '../components/ListingCard'
 
 type ListingProps = {}
+
 type Listing = {
   title: string,
   imageUrl: string,
@@ -31,7 +32,9 @@ const Listings = () => {
   <div>
     <h1> Listings </h1>
     {listings.map((listing) => (
-      <ListingCard {...listing}/>
+      <div key={listing.title} className='all-listings-card'>
+        <ListingCard {...listing}/>
+      </div>
     ))}
   </div>
 )
