@@ -13,18 +13,20 @@ interface AllUsers {
   phoneNumber: string,
 }
 
+interface CurrentUser {
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
+}
+
 interface LoginProps {
     allUsers: AllUsers[];
-    currentUser: {
-      id: number,
-      firstName: string,
-      lastName: string,
-      username: string,
-      email: string,
-      password: string,
-      phoneNumber: string,
-    };
-    setCurrentUser: React.Dispatch<React.SetStateAction<LoginProps>>
+    currentUser: CurrentUser;
+    setCurrentUser: React.Dispatch<React.SetStateAction<CurrentUser>>
   }
 
 type LoginValues = {

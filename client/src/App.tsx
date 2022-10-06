@@ -13,18 +13,28 @@ import FullListingCard from './components/FullListingCard';
 import BASE_URL from './services/api'
 
 interface User {
-  id?: number,
-  firstName?: string,
-  lastName?: string,
-  username?: string,
-  email?: string,
-  password?: string,
-  phoneNumber?: string,
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  password: string,
+  phoneNumber: string,
 }
 
 function App() {
-  const [allUsers, setAllUsers] = useState<User[]>()
-  const [currentUser, setCurrentUser] = useState<User>()
+  let initialUserValues: User = {
+    id: 0,
+    firstName: '',
+    lastName: '',
+    username: '',
+    email: '',
+    password: '',
+    phoneNumber: '',
+  }
+
+  const [allUsers, setAllUsers] = useState<User[]>([])
+  const [currentUser, setCurrentUser] = useState<User>(initialUserValues)
 
   const getUserData = async () => {
     let users = await axios.get(`${BASE_URL}/users`)
@@ -41,7 +51,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/login" element={<Login allUsers={allUsers} setCurrentUser={setCurrentUser} currentUser={currentUser}/>} />
+        <Route path="/login" element={<Login allUsers={allUsers} currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/items" element= {<Listings />} />
         <Route path="/profile/:profile_id" element={<Profile />} />
