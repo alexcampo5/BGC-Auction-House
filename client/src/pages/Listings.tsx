@@ -38,11 +38,14 @@ const Listings = () => {
   return (
   <div>
     <h1> Listings </h1>
-    {listings.map((listing) => (
-      <div key={listing.title} className='all-listings-container' onClick={() => navigateListingDetails(listing.id)}>
-        <ListingCard {...listing}/>
-      </div>
-    ))}
+    <div className='all-listings-container'>
+      {listings.map((listing) => (
+        <div key={listing.title} onClick={() => navigateListingDetails(listing.id)}>
+          <ListingCard {...listing}/>
+        </div>
+      ))}
+    </div>
+    
   </div>
 )
 }

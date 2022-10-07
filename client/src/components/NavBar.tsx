@@ -30,9 +30,9 @@ const NavBar = ({currentUser, setCurrentUser, initialUserValues}: NavProps) => {
   <div className="navbar">
     <p>Welcome {currentUser.firstName}</p>
     <img src='https://images.squarespace-cdn.com/content/v1/596fa04517bffc637c5b1745/1635735244718-OO9DE8AR3INBZUMPFDCL/18th+Annual+PFK.png?format=300w' className="par-logo-nav"/>
-    <Link to='/'>Home</Link>
-    <Link to='/items'>Auction Items</Link>
-    <Link to='/profile'>Profile</Link>
+    <Link to='/'><a>Home</a></Link>
+    <Link to='/items'><a>Auction Items</a></Link>
+    <Link to='/profile'><a>Profile</a></Link>
     <button onClick={handleLogOut}>Log Out</button>
   </div>
 )
