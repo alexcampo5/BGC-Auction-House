@@ -12,8 +12,8 @@ interface ListingCard {
   description: string,
   itemSummary: string,
   startingBid: number,
-  bidIncrement: number,
-  approximateValue: number
+  bidIncrement: number ,
+  approximateValue: number 
 }
 
 interface User {
@@ -32,7 +32,7 @@ interface ListingProps {
 
 const FullListingCard = ({user}: ListingProps) => {
 
-  let initialItemDetails: ListingCard = {
+  let initialItemDetails: ListingCard= {
     id: 0,
     title: '',
     imageUrl: '',
@@ -44,7 +44,7 @@ const FullListingCard = ({user}: ListingProps) => {
   }
 
   let {itemId} = useParams()
-  const [fullItemDetails, setFullItemDetails] = useState<ListingCard>(initialItemDetails)
+  const [fullItemDetails, setFullItemDetails] = useState<ListingCard | null>(null)
 
   const getListingDetails = async () => {
     let itemDetails = await axios.get(`${BASE_URL}/listings/${itemId}`)
@@ -55,7 +55,7 @@ const FullListingCard = ({user}: ListingProps) => {
     getListingDetails()
   }, [])
 
-  return (
+  return fullItemDetails ? (
   <div>
     <h1>{fullItemDetails.title}</h1>
     <img src={fullItemDetails.imageUrl} />
@@ -66,6 +66,8 @@ const FullListingCard = ({user}: ListingProps) => {
     <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
     <MakeBid listing={fullItemDetails} user={user}/>
   </div>
+) : (
+  <h1>Loading</h1>
 )
 }
 

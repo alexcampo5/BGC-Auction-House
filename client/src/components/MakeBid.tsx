@@ -33,19 +33,19 @@ interface BidProps{
 interface BidValues{
   userId: number,
   listingId: number,
-  bidAmount: number,
-  maxBid: number,
-  bidIncrement: number
+  bidAmount: number | null,
+  maxBid?: number | null,
+  bidIncrement?: number | null
 }
 
 const MakeBid = ({user, listing}: BidProps) => {
 
   const initialFormValues: BidValues = {
     userId: user.id,
-    listingId: listing.id,
-    bidAmount: 0,
-    maxBid: 0,
-    bidIncrement: 0
+    listingId: listing.id!,
+    bidAmount: null,
+    maxBid: null,
+    bidIncrement: null,
   }
 
   const navigate = useNavigate()
@@ -69,18 +69,19 @@ const MakeBid = ({user, listing}: BidProps) => {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
+    console.log(formValues)
   }
   return (
   <div>
     <form onSubmit={handleLoginSubmit}>
       <div>
-        <input type='number' onChange={handleChange} name='bidAmount' placeholder='Bid Amount' value={formValues.bidAmount} required/>
+        <input type='number' onChange={handleChange} name='bidAmount' placeholder='Bid Amount' value={formValues.bidAmount!} required/>
       </div>
       <div>
-        <input type='number' onChange={handleChange} name='maxBid' placeholder='Optional: Max Bid' value={formValues.maxBid} />
+        <input type='number' onChange={handleChange} name='maxBid' placeholder='Optional: Max Bid' value={formValues.maxBid!} />
       </div>
       <div>
-        <input type='number' onChange={handleChange} name='bidIncrement' placeholder='Optional: Bid Increment' value={formValues.bidIncrement}/>
+        <input type='number' onChange={handleChange} name='bidIncrement' placeholder='Optional: Bid Increment' value={formValues.bidIncrement!}/>
       </div>
       <button>Login</button>
     </form>
