@@ -4,7 +4,19 @@ import ListingCard from '../components/ListingCard'
 import BASE_URL from '../services/api'
 import {useNavigate} from 'react-router-dom'
 
-type ListingProps = {}
+interface User {
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  passwordDigest: string,
+  phoneNumber: string,
+}
+
+type ListingProps = {
+  user: User
+}
 
 type Listing = {
   id: number,
@@ -17,7 +29,7 @@ type Listing = {
   approximateValue: number
 }
 
-const Listings = () => {
+const Listings = ({user}: ListingProps) => {
   const navigate = useNavigate()
   const [listings, setListings] = useState<Listing[]>([])
 

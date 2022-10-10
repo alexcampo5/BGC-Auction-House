@@ -54,9 +54,9 @@ function App() {
         <Route path="/" element={<Home />}/>
         <Route path="/login" element={<Login allUsers={allUsers} currentUser={currentUser} setCurrentUser={setCurrentUser}/>} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/items" element= {<Listings />} />
+        <Route path="/items" element= {<Listings user={currentUser}/>} />
         <Route path="/profile/:profile_id" element={<Profile />} />
-        <Route path="/items/:itemId" element={<FullListingCard />} />
+        <Route path="/items/:itemId" element={<FullListingCard user={currentUser}/>} />
       </Routes>
     </div>
   );

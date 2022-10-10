@@ -2,9 +2,11 @@ import { useParams } from "react-router-dom"
 import axios from 'axios'
 import BASE_URL from "../services/api"
 import { useEffect, useState } from "react"
+import MakeBid from "./MakeBid"
 
 
 interface ListingCard {
+  id: number,
   title: string,
   imageUrl: string,
   description: string,
@@ -14,9 +16,24 @@ interface ListingCard {
   approximateValue: number
 }
 
-const FullListingCard = () => {
+interface User {
+  id: number,
+  firstName: string,
+  lastName: string,
+  username: string,
+  email: string,
+  passwordDigest: string,
+  phoneNumber: string,
+}
+
+interface ListingProps {
+  user: User
+}
+
+const FullListingCard = ({user}: ListingProps) => {
 
   let initialItemDetails: ListingCard = {
+    id: 0,
     title: '',
     imageUrl: '',
     description: '',
@@ -47,6 +64,7 @@ const FullListingCard = () => {
     <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
     <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
     <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
+    <MakeBid listing={fullItemDetails} user={user}/>
   </div>
 )
 }
