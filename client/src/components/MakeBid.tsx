@@ -2,6 +2,8 @@ import { userInfo } from "os"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import ListingCard from "./ListingCard"
+import axios from "axios"
+import BASE_URL from "../services/api"
 
 
 interface User {
@@ -51,20 +53,12 @@ const MakeBid = ({user, listing}: BidProps) => {
   const navigate = useNavigate()
   const [formValues, setFormValues] = useState(initialFormValues)
 
-  const handleLoginSubmit = async (e: React.SyntheticEvent) => {
+  const handleBidSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-    // let correctUser: AllUsers = allUsers.find((user) => {
-    //   return (user.username == formValues.username)
-    // })! //this is a not null operator
-    // if (formValues.password == correctUser.passwordDigest) {
-    //   let user = await axios.get(`${BASE_URL}/users/${correctUser.id}`)
-    //   console.log(user)
-    //   setCurrentUser(user.data)
-    //   setFormValues(initialFormValues)
-    //   navigate('/items')
-    // } else{
-    //   alert('Wrong password. Please try again.')
-    // }
+      let bid = await axios.get(`${BASE_URL}/bids/`)
+      console.log(bid)
+      setFormValues(initialFormValues)
+      navigate('/items')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +67,7 @@ const MakeBid = ({user, listing}: BidProps) => {
   }
   return (
   <div>
-    <form onSubmit={handleLoginSubmit}>
+    <form onSubmit={handleBidSubmit}>
       <div>
         <input type='number' onChange={handleChange} name='bidAmount' placeholder='Bid Amount' value={formValues.bidAmount!} required/>
       </div>
