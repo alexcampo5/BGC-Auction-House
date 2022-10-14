@@ -55,7 +55,7 @@ const MakeBid = ({user, listing}: BidProps) => {
 
   const handleBidSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-      let bid = await axios.get(`${BASE_URL}/bids/`)
+      let bid = await axios.post(`${BASE_URL}/bids/`, formValues)
       console.log(bid)
       setFormValues(initialFormValues)
       navigate('/items')
@@ -77,7 +77,7 @@ const MakeBid = ({user, listing}: BidProps) => {
       <div>
         <input type='number' onChange={handleChange} name='bidIncrement' placeholder='Optional: Bid Increment' value={formValues.bidIncrement!}/>
       </div>
-      <button>Login</button>
+      <button>Submit Bid</button>
     </form>
   </div>
 )

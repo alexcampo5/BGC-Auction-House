@@ -18,6 +18,14 @@ type ListingProps = {
   user: User
 }
 
+interface Bids {
+  userId: number,
+  listingId: number,
+  bidAmount: number, 
+  maxBid: number, 
+  bidIncrement: number
+}
+
 type Listing = {
   id: number,
   title: string,
@@ -27,6 +35,7 @@ type Listing = {
   startingBid: number,
   bidIncrement: number,
   approximateValue: number
+  Bids: Bids[],
 }
 
 const Listings = ({user}: ListingProps) => {
@@ -35,6 +44,7 @@ const Listings = ({user}: ListingProps) => {
 
   const getAllListings = async () => {
     let listings = await axios.get(`${BASE_URL}/listings`)
+    console.log(listings.data)
     setListings(listings.data)
   }
 
