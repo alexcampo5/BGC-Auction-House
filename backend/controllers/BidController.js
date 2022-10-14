@@ -8,6 +8,21 @@ const getAllBids = async (req, res) => {
     throw error
   }
 }
+const getAllBidsviaListingId = async (req, res) => {
+  try {
+    let bids = await Bid.findAll({
+      where: {
+        listingId: req.params.bid_id
+      },
+      include: {
+        model: User
+      }
+    })
+    res.send(bids)
+  } catch (error) {
+    throw error
+  }
+}
 
 const getBidById = async (req, res) => {
   try {
@@ -54,5 +69,6 @@ module.exports = {
   createBid,
   updateBid,
   deleteBid,
-  getBidById
+  getBidById,
+  getAllBidsviaListingId
 }
