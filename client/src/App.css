@@ -43,4 +43,36 @@ a{
   height: 20vh;
 }
 
+/* Full listing card design */
+
+/* .listing-details{
+  display: grid;
+  grid-template-areas: 
+  "a a a",
+  "b b c",
+  "b b d";
+}
+
+.listing-title{
+  grid-area: a;
+}
+.listing-image{
+  grid-area: b;
+}
+.listing-description{
+  grid-area: c;
+}
+.listing-summary{
+  grid-area: d;
+} */
+
+.listing-details{
+  background-color: beige;
+}
+
+.bid-info{
+  position: relative;
+  right: 0;
+  top: 0;
+}
 

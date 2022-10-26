@@ -55,10 +55,10 @@ const MakeBid = ({user, listing}: BidProps) => {
 
   const handleBidSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault()
-      let bid = await axios.post(`${BASE_URL}/bids/`, formValues)
-      console.log(bid)
-      setFormValues(initialFormValues)
-      navigate('/items')
+    let bid = await axios.post(`${BASE_URL}/bids/`, formValues)
+    console.log(bid)
+    setFormValues(initialFormValues)
+    navigate('/items')
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

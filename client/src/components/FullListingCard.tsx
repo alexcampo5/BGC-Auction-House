@@ -90,68 +90,68 @@ const FullListingCard = ({user}: ListingProps) => {
     setAllBids(sortedBidArray)
   }
 
+  
+
   useEffect(() => {
     getListingAndBidDetails()
   }, [])
 
-//if else returns
-
+//Return options for with or without initial bids
 
   if (fullItemDetails && allBids){
     return (
-      <div>
-        <h1>{fullItemDetails.title}</h1>
-        <img src={fullItemDetails.imageUrl} />
-        <p>{fullItemDetails.description}</p>
-        <h3>{fullItemDetails.itemSummary}</h3>
-        <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
-        <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
-        <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
-        <h1>Current bids:</h1>
-        {allBids!.map((bid: Bids, index: number) => (
-          <h3>{index + 1}: {bid.User.firstName} {bid.User.lastName}: ${bid.bidAmount}</h3>
-        ))}
-        <MakeBid listing={fullItemDetails} user={user}/>
+      <div className="full-listing-container">
+        <div className="listing-details">
+          <div className="listing-title">
+            <h1>{fullItemDetails.title}</h1>
+          </div>
+          <img className='listing-image' src={fullItemDetails.imageUrl} />
+          <div className="listing-description">
+            <p>{fullItemDetails.description}</p>
+          </div>
+          <div className='listing-summary'>
+            <h3 >{fullItemDetails.itemSummary}</h3>
+          </div>
+          <div className="bid-info">
+            <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
+            <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
+            <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
+          </div>
+        </div>
+        <div className="bid-container">
+          <h1>Current bids:</h1>
+          {allBids!.map((bid: Bids, index: number) => (
+            <div className="individual-bid-container">
+              <h3>{index + 1}: {bid.User.firstName} {bid.User.lastName}: ${bid.bidAmount}</h3>
+            </div>
+          ))}
+          <MakeBid listing={fullItemDetails} user={user}/>
+        </div>
       </div>
     )
   } else if (fullItemDetails && !allBids){
     return (
-    <div>
-    <h1>{fullItemDetails.title}</h1>
-    <img src={fullItemDetails.imageUrl} />
-    <p>{fullItemDetails.description}</p>
-    <h3>{fullItemDetails.itemSummary}</h3>
-    <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
-    <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
-    <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
-    <h1>Current bids: None</h1>
-    <MakeBid listing={fullItemDetails} user={user}/>
+      <div className="full-listing-container">
+      <div className="listing-details">
+        <h1>{fullItemDetails.title}</h1>
+        <img src={fullItemDetails.imageUrl} />
+        <p>{fullItemDetails.description}</p>
+        <h3>{fullItemDetails.itemSummary}</h3>
+        <div className="bid-info">
+          <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
+          <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
+          <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
+        </div>
+      </div>
+      <div className="bid-container">
+          <h1>Current bids: None</h1>
+          <MakeBid listing={fullItemDetails} user={user}/>
+      </div>
     </div>
     )
   }else{
     return <h1>Loading...</h1>
   }
-
-
-
-//   return fullItemDetails && allBids ? (
-//   <div>
-//     <h1>{fullItemDetails.title}</h1>
-//     <img src={fullItemDetails.imageUrl} />
-//     <p>{fullItemDetails.description}</p>
-//     <h3>{fullItemDetails.itemSummary}</h3>
-//     <h4>Approximate Value: {fullItemDetails.approximateValue}</h4>
-//     <h4>Starting Bid: {fullItemDetails.startingBid}</h4>
-//     <h4>Bid Increment: {fullItemDetails.bidIncrement}</h4>
-//     <h1>Current bids:</h1>
-//     {allBids!.map((bid: Bids, index: number) => (
-//       <h3>{index + 1}: {bid.User.firstName} {bid.User.lastName}: ${bid.bidAmount}</h3>
-//     ))}
-//     <MakeBid listing={fullItemDetails} user={user}/>
-//   </div>
-// ) : (
-//   <h1>Loading</h1>
-// )
 }
 
 export default FullListingCard
