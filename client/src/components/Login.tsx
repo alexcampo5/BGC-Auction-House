@@ -62,17 +62,25 @@ const Login = ({allUsers, currentUser, setCurrentUser}: LoginProps) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValues({ ...formValues, [e.target.name]: e.target.value })
   }
+
+  const navSignUp = () => {
+    navigate('/signup')
+  }
+
+
   return (
-  <div>
-    <h1>Login</h1>
-    <form onSubmit={handleLoginSubmit}>
-      <div>
-        <input type='text' onChange={handleChange} name='username' placeholder='username' value={formValues.username} required/>
+  <div className='login'>
+    <form onSubmit={handleLoginSubmit} className='login-form'>
+      <div className='title'>Welcome!</div>
+      <div className='subtitle'>Please log in below.</div>
+      <div className='input-container'>
+        <input className= 'input' type='text' onChange={handleChange} name='username' placeholder='username' value={formValues.username} required/>
       </div>
-      <div>
-        <input type='password' onChange={handleChange} name='password' placeholder='password' value={formValues.password} required/>
+      <div className='input-container'>
+        <input className='input' type='password' onChange={handleChange} name='password' placeholder='password' value={formValues.password} required/>
       </div>
-      <button>Login</button>
+      <button className='submit'>Login</button>
+      <button className='submit' onClick={navSignUp}>Not Registered Yet? Sign Up Here.</button>
     </form>
   </div>
 )
